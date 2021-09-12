@@ -1,32 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/stylesheets/tailwind.css">
-
-
+    <link rel="stylesheet" href="/static/lib/slickJs/slick/slick.css">
+    <link rel="stylesheet" href="/static/lib/slickJs/slick/slick-theme.css">
     <title>Document</title>
 </head>
+
 <body class="bg-gray-200">
     <header class="px-12 w-100">
         <nav class="w-100 grid grid-cols-4">
             <div class="p-5">
                 <h1 class="text-2xl font-bold tracking-widest">AKSHARAM</h1>
             </div>
-            <div class="col-span-2 flex p-5 my-auto">
+            <div class="col-span-2 hidden md:flex p-5 my-auto">
                 <a href="#" class="mr-14 hover:text-gray-400">Home</a>
                 <a href="#" class="mr-14 hover:text-gray-400">Home</a>
                 <a href="#" class="mr-14 hover:text-gray-400">Home</a>
                 <a href="#" class="mr-14 hover:text-gray-400">Home</a>
                 <a href="#" class="mr-14 hover:text-gray-400">Home</a>
             </div>
-            <div class="p-5 my-auto">
-                <input type="search" class="focus:outline-none p-1 rounded px-4 text-gray-400" placeholder="Search Keyword">
+            <div class="p-5 my-auto hidden md:flex">
+                <input type="search" class="focus:outline-none p-1 rounded px-4 text-gray-400"
+                    placeholder="Search Keyword">
             </div>
         </nav>
     </header>
     {{{body}}}
+
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="/static/lib/slickJs/slick/slick.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#articleSlide').slick({
+                dots: true,
+  infinite: true,
+  speed: 600,
+  slidesToShow: 1,
+  adaptiveHeight: true,
+  fade: true,
+  cssEase: 'linear'
+            })
+        });
+    </script>
 </body>
+
 </html>

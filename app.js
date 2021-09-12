@@ -6,6 +6,8 @@ var logger = require('morgan');
 
 var adminRouter = require('./routes/admin');
 var usersRouter = require('./routes/users');
+const db = require('./confiq/connection');
+const fileUpload = require('express-fileupload');
 
 var app = express();
 
@@ -18,6 +20,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use('/static',express.static(path.join(__dirname, 'public')));
+app.use(fileUpload())
+db.connect((err)=>{
+  if(err) console.log(err)
+  else console.log("Database connected")
+})
 
 app.use('/admin', adminRouter);
 app.use('/', usersRouter);
@@ -37,5 +44,8 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+//localhost
+
 
 module.exports = app;
