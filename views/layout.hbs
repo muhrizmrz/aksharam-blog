@@ -6,8 +6,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/stylesheets/tailwind.css">
+    <link rel="stylesheet" href="/static/stylesheets/style.css">
     <link rel="stylesheet" href="/static/lib/slickJs/slick/slick.css">
     <link rel="stylesheet" href="/static/lib/slickJs/slick/slick-theme.css">
+
+
+    <style>
+        html {
+            font-size: calc(60%+0.8vmin);
+        }
+    </style>
     <title>Document</title>
 </head>
 
@@ -41,13 +49,39 @@
         $(document).ready(function () {
             $('#articleSlide').slick({
                 dots: true,
-  infinite: true,
-  speed: 600,
-  slidesToShow: 1,
-  adaptiveHeight: true,
-  fade: true,
-  cssEase: 'linear'
+                infinite: true,
+                speed: 600,
+                slidesToShow: 1,
+                adaptiveHeight: true,
+                fade: true,
+                cssEase: 'linear'
             })
+            
+        
+            $('input[type="file"]').change(function(){
+                var resizeWidth = 500;
+                var reader = new FileReader()
+                var $this = $(this)
+                reader.readAsDataURL($this);
+                reader.name = $this.name
+                reader.onload = function(event){
+                    var img = new Image()
+                    img.src = event.target.result
+                    img.name = event.target.name
+                    img.size = event.target.size
+                    img.onload = function(el){
+                        var elem = document.createElement('canvas')
+                        var scaleFactor = resizeWidth / el.target.resizeWidth
+                        elem.width = resizeWidth;
+                        elem.height = el.target.height * scaleFactor
+                        var ctx = elem.getContext('2d');
+                        ctx.drawImage(el.target,0,0,elem.width,elem.height)
+                        var srcEncoded = ctx.canvas.toDataURL(el.target,'image/jpeg',0)
+                    }
+                }
+            })
+        
+    
         });
     </script>
 </body>

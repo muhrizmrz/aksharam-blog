@@ -8,19 +8,14 @@ router.get('/', function(req, res, next) {
   res.render('admin/home')
 });
 
+router.get('/add-article',(req,res)=>{
+  res.render('admin/add_article')
+})
 router.post('/add-article',(req,res)=>{
   //console.log(__dirname)
-  add_article.addArticle(req.body).then((result)=>{
+  add_article.addArticle(req.body,req.files.image).then((result)=>{
     console.log(result)
-    let articleImg = req.files.image
-
-    articleImg.mv('public/article-images/'+result.insertedId.toString()+'.jpg',(err,done)=>{
-      if(!err){
-        res.send(result)
-      }else{
-        res.send(err+"thisis error")
-      }
-    })
+    res.redirect('/admin')
   })
 })
 
