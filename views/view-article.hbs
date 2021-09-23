@@ -1,0 +1,28 @@
+<section class="md:px-12 px-4 md:mt-32 mt-24 mb-12">
+    <div class="grid md:grid-cols-3 grid-cols-1  gap-4">
+        <div class="col-span-2">
+            <div class="w-100 h-64">
+                <img class="h-64 object-cover w-full" src="/static/article-images/{{article._id}}.jpg">
+            </div>
+            <p class="capitalize tracking-wide text-blue-500 mt-4">{{article.catagory}}</p>
+            <h1 class="text-2xl mb-2 font-bold">{{article.topic}}</h1>
+            <div class="flex mb-4">
+                <small class="font-small font-bold text-gray-600">{{article.author}}</small>
+                <small class="ml-4 font-small font-bold text-gray-600">{{article.date}}</small>
+            </div>
+            <div class="break-words">{{{article.markdown}}}</div>
+        </div>
+        <div>
+            <p class="text-xl font-bold">You might be like</p>
+            {{#each sameTagArticles}}
+            <div class="m-4">
+                <div class="h-28">
+                    <img class="h-28 w-full object-cover" src="/static/article-images/{{this._id}}.jpg">
+                </div>
+                <a href="{{this._id}}"><h1 class="mb-2 font-bold hover:text-blue-600">{{this.topic}}</h1></a>
+            </div>
+
+            {{/each}}
+        </div>
+    </div>
+</section>

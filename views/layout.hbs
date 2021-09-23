@@ -9,18 +9,33 @@
     <link rel="stylesheet" href="/static/stylesheets/style.css">
     <link rel="stylesheet" href="/static/lib/slickJs/slick/slick.css">
     <link rel="stylesheet" href="/static/lib/slickJs/slick/slick-theme.css">
-
-
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="/static/lib/slickJs/slick/slick.min.js" type="text/javascript"></script>
+    
     <style>
         html {
             font-size: calc(60%+0.8vmin);
+        }
+        .markdown h1 {
+            font-size: 1.5rem;
+        }
+        h2 {
+            font-size: 1.25rem;
+        }
+        .markdown h3 {
+            font-size: 1.125rem;
+        }
+        #articleSlide {
+            display: none;
         }
     </style>
     <title>Document</title>
 </head>
 
-<body class="bg-gray-200">
-    <header class="px-12 w-100">
+<body class="bg-gray-100">
+    <header class="px-4 w-full border shadow-lg fixed bg-white top-0" style="z-index:1;">
         <nav class="w-100 grid grid-cols-4">
             <div class="p-5">
                 <h1 class="text-2xl font-bold tracking-widest">AKSHARAM</h1>
@@ -38,27 +53,26 @@
             </div>
         </nav>
     </header>
+
     {{{body}}}
 
 
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="/static/lib/slickJs/slick/slick.min.js" type="text/javascript"></script>
+    
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
+            //$('#articleSlide').hide()
             $('#articleSlide').slick({
                 dots: true,
                 infinite: true,
-                speed: 600,
+                autoplay: false,
+                autoplaySpeed: 4000,
                 slidesToShow: 1,
-                adaptiveHeight: true,
-                fade: true,
                 cssEase: 'linear'
-            })
-            
+            }).fadeIn()
         
-            $('input[type="file"]').change(function(){
+            /*$('input[type="file"]').change(function(){
                 var resizeWidth = 500;
                 var reader = new FileReader()
                 var $this = $(this)
@@ -79,8 +93,8 @@
                         var srcEncoded = ctx.canvas.toDataURL(el.target,'image/jpeg',0)
                     }
                 }
-            })
-        
+            })*/
+                AOS.init()  
     
         });
     </script>

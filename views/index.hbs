@@ -1,20 +1,27 @@
-<section class="px-8 w-100">
+<section class="px-8 w-100 mt-24">
     <div id="articleSlide">
         {{#each recentArticles}}
-        <a href="{{this._id}}" class="grid grid-cols-1">
-            <div class="grid grid-cols-1 md:grid-cols-2 p-3 auto-cols-max rounded">
-                <div class="">
-                    <img src="/static/article-images/{{this._id}}.jpg" class="md:h-100 sm:h-100 w-100 object-cover">
+        <a href="{{this._id}}" class="rounded h-full">
+            <div class="grid grid-cols-1 md:grid-cols-2 auto-cols-max border shadow border-gray-300 h-full">
+                <div class="h-full">
+                    <img src="/static/article-images/{{this._id}}.jpg" class="h-full w-100 object-cover">
                 </div>
                 <div class="grid grid-cols-1 justify-center bg-white my-auto p-3 md:p-10 h-full">
                     <div class="my-auto">
-                        <p class="font-medium font-bold">{{this.date}}</p>
-                        <h2 class="text-2xl mb-2">{{this.article_topic}}</h2>
-                        <p class="font-small font-bold">{{this.author}}</p>
-                        <p class="md:block hidden"> create mode 100644
-                            node_modules/yaml/browser/dist/warnings-df54cb69.js
-                            create mode 100644 node_modules/yaml/browser/index.js
-                            create mode 100644 node_modules/yaml/browser/map.js
+                        <p class="font-medium text-blue-400 uppercase">
+                            {{this.catagory}}</p>
+                        <h2 class="text-2xl my-1 capitalize font-bold breakwords">{{this.topic}} </h2>
+                        <div class="flex mb-8">
+                            <small class="font-small mr-6 font-bold text-gray-600">{{this.author}}</small>
+                            <small class="font-small font-bold text-gray-600">{{this.date}}</small>
+                        </div>
+
+                        <p class="md:block hidden tracking-wider" style="font-family: Arial, Helvetica, sans-serif;">
+                            ക്രിറ്റിക്കല്‍ ഇസ്ലാമിക വായനകള്‍ക്ക്ദ്രുതഗതിയിലുള്ള മാര്‍ക്കറ്റുകള്‍ ലഭ്യമാകുന്ന
+                            കാലഘട്ടം,ഇസ്ലാം വിരുദ്ധ ചേരികളുടെ മറപറ്റി മുതലാളിത്ത വര്‍ഗങ്ങള്‍ക്ക് ലാഭക്കൊയ്ത്തിന്റെ
+                            വേദിയൊരുങ്ങുന്നു.ഇസ്ലാമിന്റെ വൃത്തത്തിന്റെ പുറത്ത് നിന്ന് മതത്തിന്റെ സത്വത്തെ കുറിച്ചുള്ള
+                            അപക്വമായ പഠനങ്ങള്‍ക്ക് വായനാനിരക്ക് വര്‍ദ്ധിക്കുകയും ചെയ്യുന്നിടത്താണ് അപകടം
+                            പതിയിരിക്കുന്നത്
                         </p>
                     </div>
                 </div>
@@ -27,40 +34,53 @@
 
 <section id="latest_articles" class="p-10">
     <p class="text-2xl font-bold text-center mb-8">Latest</p>
-    <div class="grid grid-cols-4 gap-4">
-        <div class="grid grid-cols-1 bg-white">
-            <img src="/static/images/img-1.jpg">
-            <div class="p-4">
-                <p class="font-medium font-bold">Label</p>
-                        <h2 class="text-2xl mb-2">Topic</h2>
-                        <p class="font-small font-bold">author</p>
+    <div class="grid md:grid-cols-3 grid-cols-1">
+        {{#each allArticles}}
+        <a href="{{this._id}}" class="bg-white rounded-lg">
+            <div class="bg-cover bg-center bg-opacity-50 h-full grid grid-cols-1"
+                style="background-image: url('/static/article-images/{{this._id}}.jpg');">
+                <div class="bg-black p-6 bg-opacity-50 h-full">
+                    <div class="justify-self-center">
+                        <p class="font-medium  text-blue-400 uppercase">{{this.catagory}}</p>
+                        <h2 class="text-2xl my-1 capitalize font-bold text-white">{{this.topic}}</h2>
+                        <div class="flex mb-3">
+                            <small class="font-small mr-6 font-bold text-gray-200">{{this.author}}</small>
+                            <small class="font-small font-bold text-gray-200">{{this.date}}</small>
+                        </div>
+                        <button class="p-2 mt-2 rounded-full px-5 shadow-lg bg-white text-blue-500">Read More</button>
+                    </div>
+
+                </div>
             </div>
-        </div>
-        <div class="grid grid-cols-1 bg-white">
-            <img src="../public/images/img-1.jpg">
-            <div class="p-4">
-                <p class="font-medium font-bold">Label</p>
-                        <h2 class="text-2xl mb-2">Topic</h2>
-                        <p class="font-small font-bold">author</p>
-            </div>
-        </div>
-        <div class="grid grid-cols-1 bg-white">
-            <img src="../public/images/img-1.jpg">
-            <div class="p-4">
-                <p class="font-medium font-bold">Label</p>
-                        <h2 class="text-2xl mb-2">Topic</h2>
-                        <p class="font-small font-bold">author</p>
-            </div>
-        </div>
-        <div class="grid grid-cols-1 bg-white">
-            <img src="../public/images/img-1.jpg">
-            <div class="p-4">
-                <p class="font-medium font-bold">Label</p>
-                        <h2 class="text-2xl mb-2">Topic</h2>
-                        <p class="font-small font-bold">author</p>
-            </div>
-        </div>
+        </a>
+        {{/each}}
+
     </div>
 </section>
 
+<section class="p-5">
+    <p class="text-2xl font-bold text-center mb-8">Articles</p>
+    <div class="grid md:grid-cols-2 grid-cols-1 gap-4">
+        {{#each filterArticles}}
+        <a href="{{this._id}}">
+            <div class="grid md:grid-cols-2 grid-cols-1 shadow-lg h-full">
+                <div class="">
+                    <img src="/static/article-images/{{this._id}}.jpg" class="h-full w-100 object-cover">
+                </div>
+                <div class="bg-white p-6">
 
+                    <p class="font-medium  text-blue-400 uppercase">{{this.catagory}}</p>
+                    <h2 class=" my-1 capitalize font-bold break-words">{{this.topic}}</h2>
+                    <div class="flex mb-2">
+                        <small class="font-small mr-2 font-bold text-gray-600">{{this.author}}</small>
+                        <small class="font-small font-bold text-gray-600">{{this.date}}</small>
+                    </div>
+                    <button class="p-2 bg-blue-500 text-white">Read More</button>
+
+                </div>
+            </div>
+        </a>
+        {{/each}}
+
+    </div>
+</section>
