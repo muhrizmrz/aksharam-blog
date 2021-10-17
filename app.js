@@ -21,6 +21,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use('/static',express.static(path.join(__dirname, 'public')));
 app.use(fileUpload())
+
+// database connection
 db.connect((err)=>{
   if(err) console.log(err)
   else console.log("Database connected")

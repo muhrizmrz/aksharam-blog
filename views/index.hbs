@@ -1,16 +1,16 @@
-<section class="px-8 w-100 mt-24">
+<section class="px-8 w-100 lg:w-3/4 mx-auto mt-24">
     <div id="articleSlide">
         {{#each recentArticles}}
         <a href="{{this._id}}" class="rounded h-full">
             <div class="grid grid-cols-1 md:grid-cols-2 auto-cols-max border shadow border-gray-300 h-full">
-                <div class="h-full">
-                    <img src="/static/article-images/{{this._id}}.jpg" class="h-full w-100 object-cover">
+                <div class="h-full border-r-2">
+                    <img src="/static/article-images/{{this._id}}.jpg" class="h-50 w-100 object-cover">
                 </div>
                 <div class="grid grid-cols-1 justify-center bg-white my-auto p-3 md:p-10 h-full">
                     <div class="my-auto">
                         <p class="font-medium text-blue-400 uppercase">
                             {{this.catagory}}</p>
-                        <h2 class="text-2xl my-1 capitalize font-bold breakwords">{{this.topic}} </h2>
+                        <h2 class="text-2xl my-1 capitalize font-bold breakwords hover:text-blue-800">{{this.topic}} </h2>
                         <div class="flex mb-8">
                             <small class="font-small mr-6 font-bold text-gray-600">{{this.author}}</small>
                             <small class="font-small font-bold text-gray-600">{{this.date}}</small>
@@ -32,19 +32,19 @@
 
 </section>
 
-<section id="latest_articles" class="p-10">
+<section id="latest_articles" class="p-8 lg:w-3/4 mx-auto">
     <p class="text-2xl font-bold text-center mb-8">Latest</p>
     <div class="grid md:grid-cols-3 grid-cols-1">
         {{#each allArticles}}
         <a href="{{this._id}}" class="bg-white rounded-lg">
             <div class="bg-cover bg-center bg-opacity-50 h-full grid grid-cols-1"
                 style="background-image: url('/static/article-images/{{this._id}}.jpg');">
-                <div class="bg-black p-6 bg-opacity-50 h-full">
-                    <div class="justify-self-center">
+                <div class="bg-black p-6 bg-opacity-70 hover:bg-opacity-80 h-full flex justify-self-center " >
+                    <div class="my-auto">
                         <p class="font-medium  text-blue-400 uppercase">{{this.catagory}}</p>
-                        <h2 class="text-2xl my-1 capitalize font-bold text-white">{{this.topic}}</h2>
+                        <h2 class="text-2xl my-1 capitalize font-bold text-white hover:text-blue-200">{{this.topic}}</h2>
                         <div class="flex mb-3">
-                            <small class="font-small mr-6 font-bold text-gray-200">{{this.author}}</small>
+                            <small class="font-small mr-6 font-bold text-gray-200 capitalize">{{this.author}}</small>
                             <small class="font-small font-bold text-gray-200">{{this.date}}</small>
                         </div>
                         <button class="p-2 mt-2 rounded-full px-5 shadow-lg bg-white text-blue-500">Read More</button>
@@ -58,29 +58,30 @@
     </div>
 </section>
 
-<section class="p-5">
+<section class="p-8 lg:w-3/4 mx-auto">
     <p class="text-2xl font-bold text-center mb-8">Articles</p>
     <div class="grid md:grid-cols-2 grid-cols-1 gap-4">
         {{#each filterArticles}}
-        <a href="{{this._id}}">
-            <div class="grid md:grid-cols-2 grid-cols-1 shadow-lg h-full">
-                <div class="">
-                    <img src="/static/article-images/{{this._id}}.jpg" class="h-full w-100 object-cover">
+        <a href="{{this._id}}"> 
+            <div class="grid md:grid-cols-2 grid-cols-1 shadow-lg h-full rounded-lg bg-white hover:border-6 hover:border-gray-300 border">
+                <div class="h-64 pl-1 py-1">
+                    <img src="/static/article-images/{{this._id}}.jpg" class="h-full w-full object-cover">
                 </div>
-                <div class="bg-white p-6">
-
-                    <p class="font-medium  text-blue-400 uppercase">{{this.catagory}}</p>
-                    <h2 class=" my-1 capitalize font-bold break-words">{{this.topic}}</h2>
-                    <div class="flex mb-2">
-                        <small class="font-small mr-2 font-bold text-gray-600">{{this.author}}</small>
-                        <small class="font-small font-bold text-gray-600">{{this.date}}</small>
+                <div class="p-6 flex border-l-2 h-full" >
+                    <div class="my-auto">
+                        <p class="font-medium  text-blue-400 uppercase">{{this.catagory}}</p>
+                        <h2 class=" my-1 capitalize font-bold break-words hover:text-blue-800">{{this.topic}}</h2>
+                        <div class="flex mb-2">
+                            <small class="font-small mr-2 font-bold text-gray-600 capitalize">{{this.author}}</small>
+                            <small class="font-small font-bold text-gray-600">{{this.date}}</small>
+                        </div>
+                        <button class="p-2 bg-blue-500 text-white rounded mt-4">Read More</button>
                     </div>
-                    <button class="p-2 bg-blue-500 text-white">Read More</button>
-
                 </div>
             </div>
         </a>
         {{/each}}
-
+        <a href="/view-all/{{filterArticles.0.catagory}}" class="mx-auto col-span-2"><button
+                            class="px-5 w-full md:w-48 py-2 bg-blue-500 text-white rounded text-center">View All</button></a>
     </div>
 </section>

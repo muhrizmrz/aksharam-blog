@@ -7,8 +7,8 @@ const objectId = require('mongodb').ObjectId
 
 /* GET users listing. */
 router.get('/', async(req, res)=> {
-  let articles = await db.get().collection(collection.ARTICLE_COLLECTION).find().sort({date:-1}).limit(4).toArray()
-  let filterArticles = await db.get().collection(collection.ARTICLE_COLLECTION).find().limit(6).toArray()
+  let articles = await db.get().collection(collection.ARTICLE_COLLECTION).find().sort({date:-1}).limit(3).toArray()
+  let filterArticles = await db.get().collection(collection.ARTICLE_COLLECTION).find({catagory:'article'}).limit(6).toArray()
   article_helper.getRecentArticles().then((result)=>{  
     res.render('index',{allArticles:articles,recentArticles:result,filterArticles:filterArticles})
   })
@@ -18,7 +18,24 @@ router.get('/', async(req, res)=> {
 router.get('/:id',async(req,res)=>{
   var articleToBeView = await db.get().collection(collection.ARTICLE_COLLECTION).findOne({_id:objectId(req.params.id)})
   let sameTagArticles = await db.get().collection(collection.ARTICLE_COLLECTION).find({catagory:articleToBeView.catagory}).toArray()
-  res.render('view-article',{article:articleToBeView,sameTagArticles:sameTagArticles})
+  
+  for (var i = 0; i < sameTagArticles.length; i++) {
+    if (sameTagArticles[i]._id === objectId(req.params.id)) {
+      console.log(sameTagArticles[i]._id)
+      sameTagArticles.splice(i, 1);
+    } else{
+      console.log(objectId(req.params.id) + sameTagArticles[i]._id) 
+    }
+   }
+  let updatedSameTagArticles = sameTagArticles.filter(item => item._id !== objectId(req.params.id))
+  
+  res.render('view-article',{article:articleToBeView,sameTagArticles:updatedSameTagArticles,currentArticle:req.params.id})
 })
+
+/* GET view All */
+router.get('/view-all/:catagory',async(req,res)=>{
+  let viewAll = await db.get().collection(collection.ARTICLE_COLLECTION).find({catagory:req.params.catagory}).toArray()
+  res.render('view-all',{allArticle:viewAll})
+}) 
 
 module.exports = router;

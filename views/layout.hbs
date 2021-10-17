@@ -36,12 +36,12 @@
 
 <body class="bg-gray-100">
     <header class="px-4 w-full border shadow-lg fixed bg-white top-0" style="z-index:1;">
-        <nav class="w-100 grid grid-cols-4">
+        <nav class="w-100 lg:w-3/4 mx-auto grid grid-cols-4">
             <div class="p-5">
                 <h1 class="text-2xl font-bold tracking-widest">AKSHARAM</h1>
             </div>
             <div class="col-span-2 hidden md:flex p-5 my-auto">
-                <a href="#" class="mr-14 hover:text-gray-400">Home</a>
+                <a href="/" class="mr-14 hover:text-gray-400">Home</a>
                 <a href="#" class="mr-14 hover:text-gray-400">Home</a>
                 <a href="#" class="mr-14 hover:text-gray-400">Home</a>
                 <a href="#" class="mr-14 hover:text-gray-400">Home</a>
@@ -71,7 +71,8 @@
                 slidesToShow: 1,
                 cssEase: 'linear'
             }).fadeIn()
-        
+            
+            $('.recoommended-articles').not('.{{currentArticle}}').show()
             /*$('input[type="file"]').change(function(){
                 var resizeWidth = 500;
                 var reader = new FileReader()

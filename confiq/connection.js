@@ -6,13 +6,11 @@ const state = {
 module.exports.connect = function(done){
     const url = 'mongodb://localhost:27017'
     const dbname = 'Aksharam'
-
     mongoClient.connect(url,(err,data)=>{
-        if(err) return done(err)
-      //  console.log(data)
+        if(err) done(err)
         state.db=data.db(dbname)
-    })  
-    done(   )
+    })
+    done()
 }
 
 module.exports.get = function(){
