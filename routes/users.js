@@ -17,20 +17,19 @@ router.get('/', async(req, res)=> {
 /* GET view article */
 router.get('/:id',async(req,res)=>{
   var articleToBeView = await db.get().collection(collection.ARTICLE_COLLECTION).findOne({_id:objectId(req.params.id)})
-  let sameTagArticles = await db.get().collection(collection.ARTICLE_COLLECTION).find({catagory:articleToBeView.catagory}).toArray()
-  
+  sameTagArticles = await db.get().collection(collection.ARTICLE_COLLECTION).find({catagory:'article'}).toArray()
   for (var i = 0; i < sameTagArticles.length; i++) {
-    if (sameTagArticles[i]._id === objectId(req.params.id)) {
+    if (sameTagArticles[i]._id === req.params.id) {
       console.log(sameTagArticles[i]._id)
       sameTagArticles.splice(i, 1);
     } else{
-      console.log(objectId(req.params.id) + sameTagArticles[i]._id) 
+      console.log(req.params.id + sameTagArticles[i]._id) 
     }
    }
   let updatedSameTagArticles = sameTagArticles.filter(item => item._id !== objectId(req.params.id))
-  
   res.render('view-article',{article:articleToBeView,sameTagArticles:updatedSameTagArticles,currentArticle:req.params.id})
 })
+
 
 /* GET view All */
 router.get('/view-all/:catagory',async(req,res)=>{

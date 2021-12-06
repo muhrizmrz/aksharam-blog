@@ -61,12 +61,13 @@
     
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script type="text/javascript">
+        AOS.init()  
         $(document).ready(function () {
             //$('#articleSlide').hide()
             $('#articleSlide').slick({
                 dots: true,
                 infinite: true,
-                autoplay: false,
+                autoplay: true,
                 autoplaySpeed: 4000,
                 slidesToShow: 1,
                 cssEase: 'linear'
@@ -95,7 +96,7 @@
                     }
                 }
             })*/
-                AOS.init()  
+                
     
         });
     </script>

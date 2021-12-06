@@ -21,12 +21,12 @@ router.get('/add-article',(req,res)=>{
 /* POST new article */
 router.post('/add-article',(req,res)=>{
   add_article.addArticle(req.body).then((result)=>{
+    console.log(req.files)
     if(req.files.image){
       let image  = req.files.image
       image.mv('public/article-images/'+result.insertedId.toString()+'.jpg',(err,done)=>{
         if(!err){
-          console.log(result)
-          
+          console.log(result)  
         }else{
           console.log(err) 
         }
