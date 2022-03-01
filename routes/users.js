@@ -15,7 +15,7 @@ router.get('/', async(req, res)=> {
 });
 
 /* GET view article */
-router.get('/:id',async(req,res)=>{
+router.get('/articles/:id',async(req,res)=>{
   var articleToBeView = await db.get().collection(collection.ARTICLE_COLLECTION).findOne({_id:objectId(req.params.id)})
   sameTagArticles = await db.get().collection(collection.ARTICLE_COLLECTION).find({catagory:'article'}).toArray()
   for (var i = 0; i < sameTagArticles.length; i++) {
